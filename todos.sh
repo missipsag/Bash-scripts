@@ -4,90 +4,47 @@
 
 TODO_FILE="$HOME/.todo-list"
 
-if [ ! -f "$TODO_File" ];
+if [ ! -f "$TODO_File" ]; #check if the todo-list file is already created ( if its the first time using the script)
 then 
     touch "$TODO_FILE"
 fi 
 
 
-function help () {
-    echo ""
-    echo "todo <verb> <arguments>"
-    echo ""
-    echo "verbs :"
-    echo ""
-    echo "add : add a task to the todo list, it accepts String"
-    echo "remove, rm : removes a task from the todo list, accepts either Strings or todos indecies"
-    echo "show : shows the current tasks "
-    echo " "
-}
 
 
-function show () {
-    echo "Current todos : "
-    cat $TODO_FILE
-}
-
-function add () { 
-
-    echo " **********INSIDE THE ADD FUNCTION ****************"
-    #here we use a for loop to iterate through the todos array and add them to the list 
-    #${#todos[@]} is the length of the todos array
-    local todos="$1"
-    for i in "${#todos[@]}";
-    do 
-        echo " ${todos[$i]}" 
-    done    
-    
-}
-
-
-function remove () {
-
-    
-    if [ ${#todos_to_delete[@]} -eq 0 ]; 
-    then 
-        echo "please pass in an argument, try again"
-    else 
-       for i in {0..${#todos[@]}}
-        do 
-            sed "${task_to_delete[i]}d" TODO_FILE
-        done 
-    fi
-}
 
 
 
 case "$1" in 
-     help) help 
+     help) 
+        echo ""
+        echo "todo <verb> <arguments>"
+        echo ""
+        echo "verbs :"
+        echo ""
+        echo "add : add a task to the todo list, it accepts String"
+        echo "remove, rm : removes a task from the todo list, accepts a number"
+        echo "show : shows the current tasks "
+        echo " "
     ;;
     add ) 
-        #todos array
-        declare -a todos
-
-        j=0
-        shift #shifting so that we don't include the option in our array
-        while [ $# -gt 0 ]
-        do
-            ${todos[$j]}="$1"
-            ((j++))
-            shift  
-        done
-        add "todos"
+       cat >> $TODO_FILE
+       echo ""
+        
     ;;
-    remove | rm ) 
-        #todos to delete array
-        declare -a todos_to_delete
-
-        j=0
-        shift #shifting so that we don't include the option in our array
-        while [ $# -gt 0 ]
-        do
-            todos_to_delete[$j]="$1"
-            ((j++))
-            shift  
-        done
-        remove "todos_to_delete"
+    remove | rm )
+        if [ ! $2 ]; 
+        then 
+            echo "please enter the line number of the task to delete"
+        fi
+        sed -i "$2 d" $TODO_FILE
+        
     ;;
-    show ) show  
+    show ) 
+        
+    echo "Current todos : "
+    nl $TODO_FILE
+
 esac 
+
+
