@@ -33,12 +33,12 @@ case "$1" in
         
     ;;
     remove | rm )
-        if [ ! $2 ]; 
+        if [ ! $2 ]; #check if the line number was provided by the user
         then 
             echo "please enter the line number of the task to delete"
+        else
+        sed -i "$2 d" $TODO_FILE #deleting the task which line number was provided by the user 
         fi
-        sed -i "$2 d" $TODO_FILE
-        
     ;;
     show ) 
         
