@@ -5,6 +5,41 @@
 # to open an external program and getting distracted and wasting what could be valuable 
 # focus time
 
+
+## Displaying colors using ANSI escape codes.
+green() {
+    echo -en "\e[32m\e[1m $1 \e[0m"
+}
+
+red() {
+  echo -e "\e[31m $1 \e[0m"
+}
+
+yellow() {
+  echo -e "\e[33m $1 \e[0m"
+}
+
+blue() {
+    echo -e "\e[34m\e[1m $1 \e[0m"
+}
+
+blueBackground(){
+    echo -e "\e[44m $1 \e[0m"
+}
+
+greenBackground() {
+    echo -en "\e[42m\e[37m $1 \e[0m"
+}
+
+yellowBackground() {
+    echo -e "\e[43m $1 \e[0m"
+}
+
+redBackground() {
+    echo -e "\e[41m\e[37m\e[1m $1 \e[0m"
+}
+
+
 TODO_FILE="$HOME/.todo-list" #declare a file where to put the todos
 
 if [ ! -f "$TODO_File" ]; #check if the todo-list file is already created ( if its the first time using the script)
@@ -13,35 +48,42 @@ then
 fi 
 
 case "$1" in 
-     help) 
+    help) 
         echo ""
-        echo "todo <verb> <arguments>"
+        blue "Usage : "
         echo ""
-        echo "verbs :"
+        green "todo <verb> <arguments>"; echo -e "\n "
+        blue "verbs : "
         echo ""
-        echo "add : add a task to the todo list, it accepts String"
-        echo "clear : clears/removes a task from the todo list, accepts a number"
-        echo "show : shows the current tasks "
+        green "add"; echo " : add a task to the todo list."
+        green "clear"; echo " : clears/removes a task from the todo list by providing its line number."
+        green "show"; echo " : shows the current tasks. "
         echo " "
     ;;
-    add ) 
-       cat >> $TODO_FILE
-       echo ""
-        
+    add )
+        echo ""
+        blue "Add your task(s). Press Ctrl+d to exit."
+        echo ""
+        cat >> $TODO_FILE
+        echo ""
+        green "Task(s) added successfully!" ; echo ""
     ;;
-    clear || cl)
+    clear)
         if [ ! $2 ]; #check if the line number was provided by the user
         then 
-            echo "please enter the line number of the task to delete"
+            redBackground "Please enter the line number of the task to delete."
         else
         sed -i "$2 d" $TODO_FILE #deleting the task which line number was provided by the user 
+        red "Task(s) deleted!"
         fi
     ;;
     show ) 
-        
-    echo "Current todos : "
-    nl $TODO_FILE
-
+        echo ""
+        blue "Current todos :"
+        echo ""
+        nl $TODO_FILE  #list all the tasks 
+        echo ""
+    ;;
 esac 
 
 
