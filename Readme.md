@@ -45,6 +45,7 @@
     todo show 
 
 ## Examples
+
 1. Add a task : 
     ![add a task](./illustrations/add.png)
 
@@ -59,7 +60,7 @@
 
 
 ## Technologies Used 
-    * Programming Language : Bash
+* Programming Language : Bash
 
 ## Contributing 
 Contribution are welcome! 
