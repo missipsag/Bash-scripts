@@ -47,6 +47,7 @@
 ## Examples
 
 1. Add a task : 
+
     ![add a task](./illustrations/add.png)
 
 2. Show current tasks : 
