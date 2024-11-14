@@ -1,8 +1,6 @@
-#Terminal Todo-list app
+# Terminal Todo-list app
 
-## A command-line interface (CLI) application for managing your tasks efficiently. This project demonstrates fundamental concepts in programming and showcases clean, modular code.
-
-This a script that does exactly what a todo app does but on the terminalI made it so that I can check my todo list directly on my terminal whithout having to open an external program and getting distracted and wasting what could be valuable focus time
+## A command-line interface (CLI) application for managing your tasks efficiently. This app helps programmers whom, just like me, dislike getting distracted while coding.
 
 ## Table of Contents 
 
@@ -48,16 +46,16 @@ This a script that does exactly what a todo app does but on the terminalI made i
 
 ## Examples
 1. Add a task : 
-    ![add a task](./photo/add.png)
+    ![add a task](./illustrations/add.png)
 
 2. Show current tasks : 
-    ![show current tasks](./photo/show.png)
+    ![show current tasks](./illustrations/show.png)
 
 3. Clear a task :
-    ![clear a task](./photo/clear.png)
+    ![clear a task](./illustrations/clear.png)
 
 4. Get help page : 
-    ![get help](./photo/help.png)
+    ![get help](./illustrations/help.png)
 
 
 ## Technologies Used 
